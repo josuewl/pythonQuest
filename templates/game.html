@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprenda Python Jogando!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; align-items: center;">
+            <div>
+                <img src="{{ url_for('static', filename='python_icon.png') }}" alt="Python" style="width: 100px; margin-right: 10px;">
+                <img src="{{ url_for('static', filename='quest_python_logo.png') }}" alt="Quest Python" style="width: 100px; margin-right: 10px;">
+                <img src="{{ url_for('static', filename='snake_icon.png') }}" alt="Snake" style="width: 100px;">
+            </div>
+            <h2 style="margin-left: 20px;">Nível {{ level }} de {{ total_levels }}</h2>
+        </div>
+        <div>
+            <h3>Conceito: {{ concept }}</h3>
+            <p>{{ instructions|safe }}</p>
+        </div>
+        <div>
+            <h3>Código:</h3>
+            <form method="POST">
+                <textarea name="code" style="width: 100%; height: 100px;">{{ code }}</textarea>
+                <button type="submit" style="width: 100%; padding: 10px; margin-top: 10px;">Executar Código</button>
+            </form>
+        </div>
+        <div>
+            <h3>Saída:</h3>
+            <div class="output">
+                {{ output or '# Aqui aparece a saída ou erro do código' }}
+            </div>
+        </div>
+        {% if correct and level < total_levels %}
+        <div style="margin-top: 20px;">
+            <a href="{{ url_for('game', level=level + 1) }}">
+                <button style="width: 100%; padding: 10px; background-color: #007bff; color: white;">
+                    Próximo Exercício
+                </button>
+            </a>
+        </div>
+        {% elif correct %}
+        <div style="margin-top: 20px;">
+            <p>Parabéns! Você completou todos os níveis disponíveis.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
