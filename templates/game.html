@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprenda Python Jogando!</title>
+    <!-- Incluindo o arquivo CSS e CodeMirror via CDN -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,13 +21,13 @@
             <h2 style="margin-left: 20px;">Nível {{ level }} de {{ total_levels }}</h2>
         </div>
         <div>
-            <h3>Conceito: {{ concept }}</h3>
+            <h3>Modulo: {{ concept }}</h3>
             <p>{{ instructions|safe }}</p>
         </div>
         <div>
-            <h3>Código:</h3>
+            <h3>Terminal:</h3>
             <form method="POST">
-                <textarea name="code" style="width: 100%; height: 100px;">{{ code }}</textarea>
+                <textarea id="code" name="code" style="width: 100%; height: 100px;">{{ code }}</textarea>
                 <button type="submit" style="width: 100%; padding: 10px; margin-top: 10px;">Executar Código</button>
             </form>
         </div>
@@ -47,5 +51,17 @@
         </div>
         {% endif %}
     </div>
+
+    <!-- Script para inicializar o CodeMirror -->
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            mode: 'python',
+            lineNumbers: true,
+            indentUnit: 4,
+            matchBrackets: true,
+            autoCloseBrackets: true,
+            theme: 'default'
+        });
+    </script>
 </body>
 </html>

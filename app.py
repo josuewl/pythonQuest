@@ -42,8 +42,8 @@ levels = [
         'concept': 'Condicionais (if/else)',
         'instructions': (
             "As estruturas condicionais permitem que o código execute certas instruções apenas se uma condição "
-            "for verdadeira. Neste nível, você deve verificar se o valor de uma variável `x` é maior que 10 e imprimir "
-            "'Maior que 10' se a condição for verdadeira."
+            "for verdadeira. Neste nível, você deve criar uma variável x com o valor 15, verificar se o "
+            "valor dessa variável é maior que 10 e imprimir 'Maior que 10' se a condição for verdadeira."
         ),
         'solution': "x = 15\nif x > 10:\n    print('Maior que 10')",
     },
